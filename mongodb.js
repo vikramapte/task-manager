@@ -19,6 +19,75 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
 
     const db = client.db(database);
 
+    const usersCollection = db.collection('users');
+    const taskscollection = db.collection('tasks');
+    
+    //------- deleteOne and deleteMany start-------------------------
+    // const deletePromise = usersCollection.deleteMany({
+    //     age: 33
+    // }).then(result => {
+    //     console.log(result);
+    // }).catch(error => {
+    //     console.log(error);
+    // });
+
+    const deletePromise = taskscollection.deleteOne({
+        description: 'Task 3 description'
+    }).then(result => {
+        console.log(result);
+    }).catch(error => {
+        console.log(error);
+    });
+
+    //------- deleteOne and deleteMany start-------------------------
+
+    //------- updateOne and updateMany start-------------------------
+    
+    // const updatePromise = usersCollection.updateOne({
+    //     _id: new ObjectID("5db5e7e80a8b3e2e816bf7de")
+    // }, {
+    //         // $set: {
+    //         //     name: 'Mike'
+    //         // }
+    //         $inc: {
+    //             age: 1
+    //         }
+    // }).then((result) => {
+    //     console.log(result);
+    // }).catch((error) => {
+    //     console.log(error);
+    // })
+
+
+    // const updatePromise = usersCollection.updateMany( {
+    //     name: 'Keshav',
+    //     age: 32
+    // }, {
+    //     $set: {
+    //         age: '63'
+    //     }
+    // }).then(result => {
+    //     console.log(result);
+    // }).catch(error => {
+    //     console.log(error);
+    // })
+
+    // const updatePromise = taskscollection.updateMany( {
+    //     completed: false
+    // }, {
+    //     $set: {
+    //         completed: true
+    //     }
+    // }).then(result => {
+    //     console.log(result);
+    // }).catch(error => {
+    //     console.log(error);
+    // })
+
+    //------- updateOne and updateMany End-------------------------
+
+    //------- find and findOne start-------------------------
+
     // db.collection('users').findOne({ _id: new ObjectID("5dc1541f89362a858dcf7e00")}, (error, user) => {
     //     if (error) {
     //         return console.log(`Unable to fetch`);
@@ -40,29 +109,31 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
     //     console.log(count);
     // })
 
-    const tasksCollection = db.collection('tasks');
-    tasksCollection.findOne({"_id" : new ObjectID("5dc14f29282b682d9139442f")} , (error, task) => {
-        if (error) {
-            return console.log(`Unable to fetch`);
-        }
+    // const tasksCollection = db.collection('tasks');
+    // tasksCollection.findOne({"_id" : new ObjectID("5dc14f29282b682d9139442f")} , (error, task) => {
+    //     if (error) {
+    //         return console.log(`Unable to fetch`);
+    //     }
 
-        if (task) {
-            return console.log(task);
-        } else {
-            return console.log(`Task not found`)
-        }
+    //     if (task) {
+    //         return console.log(task);
+    //     } else {
+    //         return console.log(`Task not found`)
+    //     }
 
-    });
+    // });
 
-    tasksCollection.find({ completed: false}).toArray((error, result) => {
-        if (error) {
-            return console.log(`Unable to fetch`);
-        }
+    // tasksCollection.find({ completed: false}).toArray((error, result) => {
+    //     if (error) {
+    //         return console.log(`Unable to fetch`);
+    //     }
 
-        return console.log(result);
-    });
+    //     return console.log(result);
+    // });
 
+    //------- find and findOne end-------------------------
 
+    //------- insertMany and insertOne start-------------------------
     // db.collection('users').insertOne({
     //     _id: id,
     //     name: `Arjun`,
@@ -113,6 +184,6 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
     //     console.log(result.ops);
     // })
 
-
+    //------- insertMany and insertOne end-------------------------
 
 });
